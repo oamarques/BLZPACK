@@ -1,0 +1,92 @@
+## 11/05/2015 ##########################################################
+#                                                                      #
+#  fixes.txt lists bugs fixes and/or code modifications.               #
+#                                                                      #
+########################################################################
+
+Releases:
+--------
+
+   12/1995: 
+          . double precision version
+   05/1996:
+          . improved scripts
+          . single precision version
+          . modifications required for the CRAY C90
+   06/1997:
+          . modifications in the test drivers
+          . modifications required for the CRAY T3E
+          . modifications in the band reduction of the block tridiagonal
+   11/1997:
+          . bug fixed in the convergence check routine
+   07/1998:
+          . MPI and PVM versions
+          . buckling transformation mode
+   09/1999:
+          . modifications in the interface
+          . O(N**2) tridiagonal eigensolver option introduced
+   01/2002:
+          . modifications in the converge criterion and shift strategy
+
+   10/2015:
+          . rename of internal funcions
+          . compilation and testing simplified
+
+########################################################################
+
+Nov 1999: 
+
+. manual.ps: 15+LISTOR replaced by 17+LISTOR and 4+LRSTOR replaced by
+             5+LRSTOR; 150 replaced by 180 as default for k1; driver
+             models updated.
+. blzdrd.f : 15+LISTOR replaced by 17+LISTOR, 4+LRSTOR replaced by
+             5+LRSTOR, and min(N,150) replaced by min(N,180) in the
+             leading comments; modification in logical flags for 
+             algorithm control in reverse communication strategy;
+             one argument removed in the call to blzset.
+. blzeig.f : modification in logical flags for algorithm control in
+             reverse communication strategy.
+. blzext.f : modification in logical flags for algorithm control in
+             reverse communication strategy.
+. blzrbx.f : modification in logical flags for algorithm control in
+             reverse communication strategy.
+. blzset.f : temporary arrays introduced to avoid accessing ISTOR and
+             RSTOR when calling blzdrd/s in workspace query mode;
+             condition for workspace query modified; one argument 
+             removed; call to lzerrs added.
+. blzstp.f : condition added in logical flag ENDON to abort execution
+             when an indefinite matrix B is detected; argument added
+             in the call to subroutine lzstp5.
+. datchk.f : condition for workspace query modified.
+. datset.f : condition for workspace query modified; one argument
+             removed.
+. lzchek.f : condition added in logical flag EIGON.
+. lzhist.f : modification in the test with NONEWS (4 changed to 3).
+. lzmmry.f : condition for workspace query modified.
+. lzrang.f : modification in the initial bounds for the generalized
+             engenvalue problem in buckling mode.
+. lzstp5.f : argument added.
+. ssbnds.f : modification in the check for an empty computational
+             interval.
+. ssneed.f : new case for changing sigma introduced.
+. ssorgn.f : modification in the shift selection.
+. ssspec.f : modification in the shift selection.
+. tbconv.f : more conservative threshold for convergence in single
+             precision arithmetic.
+
+Apr 2001:
+
+. blzstr.f : modification in reverse communication flag (LFLAG) for
+             restarting in standard mode.
+. lzioop.f : modification in error flags (IOERR) and in test for
+             opening files.
+
+Jun 2001:
+
+. rfactr.f : BMAXN and BMINN set to EPS when NPIVT=.true. to avoid 
+             potential arithmetic exception afterwards.
+. lzstp2.f : JLP1 redefined as MAX(1,JL) to avoid JL+1 > JLMAX
+. lzstp3.f : JLP1 redefined as MAX(1,JL) to avoid JL+1 > JLMAX
+             
+
+end of fixes.txt #######################################################

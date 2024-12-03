@@ -1,0 +1,104 @@
+## 10/10/2015 #############################################################
+#                                                                         #
+#  The directory blzpack/tests.                                           #
+#                                                                         #
+###########################################################################
+
+   This directory contains:
+
+   (NB. The data files can be modified to test other drivers.)
+
+   A.dat      : the upper triangle, in coordinate format (row,column,
+                value), of a symmetric test matrix of dimension 10.
+   A.eig      : eigenvectors (x) and corresponding eigenvalues (eig) 
+                computed with Matlab for the matrix given in the 
+                file 'A.dat'.
+   A_B1.eig   : eigenvectors (x) and corresponding eigenvalues (eig) 
+                computed with Matlab for (A)*(x)-eig*(B1)*(x)=(0),
+                where (A) corresponds to 'A.dat' and (B1) to
+               'B1.dat'.
+   A_B2_1.eig : eigenvectors (x) and corresponding eigenvalues (eig) 
+                computed with Matlab for (A)*(x)-eig*(B2)*(x)=(0),
+                where (A) corresponds to 'A.dat' and (B2) to
+                'B2.dat'.
+   A_B2_2.eig : eigenvectors (x) and corresponding eigenvalues (eig) 
+                computed with Matlab for (A)*(x)-eig*(B2)*(x)=(0) in
+                buckling mode, where (A) corresponds to 'A.dat' and
+                (B2) to 'B2.dat'.
+   Ainv.dat   : the upper triangle, in coordinate format (row,column,
+                value), of the inverse of the matrix given in the 
+                file 'A.dat'.
+   Ainv.eig   : eigenvectors (x) and corresponding eigenvalues (eig) 
+                computed with Matlab for the matrix given in the file
+                'Ainv.dat' (the eigenvalues are just the reciprocals
+                of those given in 'A.eig', while the eigenvectors
+                are the same).
+   B1.dat     : diagonal matrix of dimension 10.
+   B2.dat     : the upper triangle, in coordinate format (row,column,
+                value), of a matrix of dimension 10 with the same
+                pattern of 'A.dat'.
+   C1.dat     : a 10-by-12 matrix stored in coordinate format (row,
+                column,value). It can be used to test 'drvsp3.f'.
+   C1.svd     : singular value decomposition of the matrix given in
+                the file 'C1.dat' (that is what 'drvsp3.f' does).
+   C2.dat     : a 12-by-10 matrix stored in coordinate format (row,
+                column,value). It can be used to test 'drvsp4.f'.
+   C2.svd     : singular value decomposition of the matrix given in
+                the file 'C2.dat' (that is what 'drvsp4.f' does).
+   Makefile   : creates executables
+   drvgp1.dat : data for drvgp1.f (i.e. drvgp1.x < drvgp1.dat)
+   drvgp2.dat : data for drvgp2.f (i.e. drvgp2.x < drvgp2.dat)
+   drvgp3.dat : data for drvgp3.f (i.e. drvgp3.x < drvgp3.dat)
+   drvgp4.dat : data for drvgp4.f (i.e. drvgp4.x < drvgp4.dat)
+   drvsp1.dat : data for drvsp1.f (i.e. drvsp1.x < drvsp1.dat)
+   drvsp2.dat : data for drvsp2.f (i.e. drvsp2.x < drvsp2.dat)
+   drvsp3.dat : data for drvsp3.f (i.e. drvsp3.x < drvsp3.dat)
+   drvsp4.dat : data for drvsp4.f (i.e. drvsp4.x < drvsp4.dat)
+
+   subdirectory src:
+   ----------------
+
+   (NB. MA47 is not provided with BLZPACK.)
+
+   drvgp1.f     : driver model for (A)*(x)-eig*(B)*(x)=(0). It uses the
+                  routine MA47, which is part of the Harwell Subroutine
+                  Library, to factor matrices and solve systems of linear
+                  equations. (B) is set to the identity matrix.
+   drvgp2.f     : driver model for (A)*(x)-eig*(B)*(x)=(0). It uses the
+                  routine MA47, which is part of the Harwell Subroutine
+                  Library, to factor matrices and solve systems of linear
+                  equations. (B) is assumed to be a diagonal matrix.
+   drvgp3.f     : driver model for (A)*(x)-eig*(B)*(x)=(0). It uses the
+                  routine MA47, which is part of the Harwell Subroutine
+                  Library, to factor matrices and solve systems of linear
+                  equations. (B) is assumed to have the same sparse pattern 
+                  of (A).
+   drvgp4.f     : driver model for (A)*(x)-eig*(B)*(x)=(0) in buckling
+                  mode. It uses the routine MA47, which is part of the
+                  Harwell Subroutine Library, to factor matrices and solve
+                  systems of linear equations. (B) is assumed to have the 
+                  same sparse pattern of (A).
+   drvgp5.f     : driver model for (A)*(x) - mu*[(B)+rho*(K)]*(x) = (0)
+   drvgp6.f     : driver model for (B)*(x) - mu*(A)*(x) = (0)
+   drvgp7.f     : variant of drvgp3.f
+   drvsp1.f     : driver model for (A)*(x)-eig*(x)=(0). It uses a BLAS 
+                  kernel to perform matrix-vector products.
+   drvsp1_mpi.f : a parallel version of drvsp1.f using MPI.
+   drvsp1_pvm.f : (*deprecated*) a parallel version of drvsp1.f using PVM.
+   drvsp2.f     : driver model for (A)*(x)-eig*(x)=(0). It uses a sparse
+                  matrix-vector multiplication.
+   drvsp3.f     : driver model for (A)*(x)-eig*(x)=(0) where (A) is equal
+                  to (C)^T*(C) (that is the SVD of (C)). It uses a sparse
+                  matrix-vector multiplication.
+   drvsp4.f     : driver model for (A)*(x)-eig*(x)=(0) where (A) is an 
+                  augmented matrix [(0) (C); (C)^T (0)] (that is the SVD
+                  of (C)). It uses a sparse matrix-vector multiplication.
+   prteig.f     : subroutine to store EIG and X (which are outputs of 
+                  BLZDRS/D) in two separate files, 'EIG' and 'X'.
+
+   running the tests:
+   -----------------
+
+   See script etc/run_tests.csh
+
+end of README #############################################################
